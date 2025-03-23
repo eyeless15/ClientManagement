@@ -28,15 +28,6 @@ namespace ClientManagement.Controllers
             return Ok(customers);
         }
 
-
-        //[HttpGet]
-        //public async Task<ActionResult<IEnumerable<Customer>>> GetCustomersAsync(string name = null, string phone = null, int pageNumber = 1, int pageSize = 10)
-        //{
-        //    var customers = await _customerService.GetCustomersAsync(name, phone, pageNumber, pageSize);
-
-        //    return Ok(customers);
-        //}
-
         [HttpGet("{id}")]
         public async Task<ActionResult<Customer>> GetCustomerByIdAsync(int id)
         {
