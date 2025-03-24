@@ -16,7 +16,6 @@ namespace ClientManagement.Repositories.CustomerRepository
 
         public async Task<IEnumerable<Customer>> GetCustomersAsync(string name, string phone, string sortBy, bool ascending, int pageNumber, int pageSize)
         {
-            // Start with the base query, including Join to Contact for filtering by phone
             IQueryable<Customer> query = _context.Customers
                 .Include(c => c.Contact) // Include the Contact information for phone filtering
                 .AsQueryable();
@@ -62,11 +61,11 @@ namespace ClientManagement.Repositories.CustomerRepository
                 UpdatedAt = DateTime.UtcNow
             };
 
-            
+
             _context.Contacts.Add(contact);
             await _context.SaveChangesAsync();
 
-         
+
             var customer = new Customer
             {
                 Name = customerDTO.Name,
@@ -74,10 +73,10 @@ namespace ClientManagement.Repositories.CustomerRepository
                 ContactId = contact.Id,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
-                Contact = contact 
+                Contact = contact
             };
 
-          
+
             _context.Customers.Add(customer);
             await _context.SaveChangesAsync();
 
@@ -86,9 +85,9 @@ namespace ClientManagement.Repositories.CustomerRepository
 
         public async Task<bool> DeleteCustomerAsync(int id)
         {
-           var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Id == id);
+            var customer = await _context.Customers.FirstOrDefaultAsync(c => c.Id == id);
 
-            if(customer == null)
+            if (customer == null)
             {
                 return false;
             }
@@ -109,7 +108,7 @@ namespace ClientManagement.Repositories.CustomerRepository
 
             if (existingCustomer == null)
             {
-                return false;  
+                return false;
             }
             if (customerDTO.Name != null)
             {
@@ -127,13 +126,13 @@ namespace ClientManagement.Repositories.CustomerRepository
                 existingCustomer.Contact.UpdatedAt = DateTime.UtcNow;
             }
 
-       
+
             existingCustomer.UpdatedAt = DateTime.UtcNow;
 
-          
+
             await _context.SaveChangesAsync();
 
-            return true;  
+            return true;
         }
     }
 }
