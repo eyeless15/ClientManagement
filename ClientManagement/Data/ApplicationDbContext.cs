@@ -43,6 +43,7 @@ namespace ClientManagement.Data
                 entity.Property(c => c.CreatedAt).HasDefaultValueSql("GETDATE()");
                 entity.Property(c => c.UpdatedAt).HasDefaultValueSql("GETDATE()");
                 entity.HasIndex(c => c.ContactId).HasDatabaseName("IX_Customer_ContactId");
+                entity.HasIndex(c => c.Name).HasDatabaseName("IX_Customer_Name");
             });
         }
     }
