@@ -9,6 +9,7 @@ namespace ClientManagement.Models.DTO
         public string Name { get; set; }
 
         [Required]
+        [EnumDataType(typeof(CustomerStatus))]
         public CustomerStatus Status { get; set; }
 
         [Required]
