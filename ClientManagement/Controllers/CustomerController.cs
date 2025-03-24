@@ -12,12 +12,10 @@ namespace ClientManagement.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;
-        private readonly ApplicationDbContext _context;
 
-        public CustomerController(ICustomerService customerService, ApplicationDbContext context)
-        {
+        public CustomerController(ICustomerService customerService) 
+        { 
             _customerService = customerService;
-            _context = context;
         }
 
         [HttpGet]
