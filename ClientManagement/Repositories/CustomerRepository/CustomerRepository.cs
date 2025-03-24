@@ -65,7 +65,7 @@ namespace ClientManagement.Repositories.CustomerRepository
             _context.Contacts.Add(contact);
             await _context.SaveChangesAsync();
 
-
+            // Before we create the new customer, we first need to make sure that the contact has been created
             var customer = new Customer
             {
                 Name = customerDTO.Name,
